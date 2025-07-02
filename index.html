@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>💌 From Your Pookie</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(135deg, #ffe6f0, #ffdafb);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .card {
+      background: #f0f8ff;
+      border: 2px solid #b3e5ff;
+      padding: 35px;
+      border-radius: 30px;
+      box-shadow: 0 0 30px rgba(255, 153, 204, 0.4);
+      text-align: center;
+      max-width: 500px;
+      z-index: 2;
+    }
+
+    h1 {
+      color: #7aa6ff;
+      font-family: 'Pacifico', cursive;
+      font-size: 2.3rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #a64d79;
+      line-height: 1.6;
+    }
+
+    .hug-btn {
+      margin-top: 20px;
+      background: #ba2968;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1rem;
+      border-radius: 25px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 5px 10px rgba(255, 150, 200, 0.3);
+      display: none;
+    }
+
+    .hug-btn:hover {
+      background: #ff99cc;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      background: #fff6fc;
+      padding: 12px 20px;
+      border-radius: 20px;
+      color: #ff4da6;
+      font-weight: bold;
+      box-shadow: 0 0 10px rgba(255, 182, 218, 0.6);
+      animation: popfade 2s ease forwards;
+      z-index: 999;
+      width: fit-content;
+      max-width: 300px;
+      white-space: nowrap;
+    }
+
+    @keyframes popfade {
+      0% { opacity: 0; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.05); }
+      100% { opacity: 0; transform: scale(1); }
+    }
+
+    .hearts {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .hearts span {
+      position: absolute;
+      color: #ffb6e6;
+      animation: floatHearts 6s linear infinite;
+      font-size: 25px;
+    }
+
+    @keyframes floatHearts {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .movie-options {
+      margin-top: 15px;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .yes-btn {
+      background: #ffb6e6;
+      border: 2px solid #ff85b3;
+      padding: 10px 18px;
+      border-radius: 20px;
+      font-weight: bold;
+      color: #b91c5e;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+
+    .yes-btn:hover {
+      background: #ff99cc;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Hi my babygurl 💕</h1>
+    <p>
+      Hehe will youuuu maybe.. possibly.. 👉👈<br> 
+      watch a movie with me soon? 🎬 <br>
+      I will bring my fried chicken (hehe), sunshine charm, and unlimited fun👀
+    </p>
+
+    <div class="movie-options">
+      <button class="yes-btn" onclick="answerYes()">YESS</button>
+      <button class="yes-btn" onclick="answerYes()">ALSO YESSSS</button>
+    </div>
+
+    <button class="hug-btn" id="hugBtn" onclick="showHug()">Click for Hug 🫂</button>
+    <div class="popup" id="hugPopup">*squishy hug delivered* 💞🧸</div>
+  </div>
+
+  <div class="hearts" id="hearts"></div>
+
+  <script>
+    function answerYes() {
+      document.getElementById("hugBtn").style.display = "inline-block";
+    }
+
+    function showHug() {
+      const popup = document.getElementById("hugPopup");
+
+      const maxWidth = window.innerWidth - popup.offsetWidth;
+      const maxHeight = window.innerHeight - popup.offsetHeight;
+
+      const randomLeft = Math.random() * maxWidth;
+      const randomTop = Math.random() * maxHeight;
+
+      popup.style.left = randomLeft + "px";
+      popup.style.top = randomTop + "px";
+      popup.style.display = "block";
+
+      setTimeout(() => {
+        popup.style.display = "none";
+      }, 2000);
+    }
+
+    const heartsContainer = document.getElementById("hearts");
+    for (let i = 0; i < 25; i++) {
+      const heart = document.createElement("span");
+      heart.innerHTML = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+      heart.style.fontSize = (20 + Math.random() * 15) + "px";
+      heartsContainer.appendChild(heart);
+    }
+  </script>
+
+</body>
+</html>
